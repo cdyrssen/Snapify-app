@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setVmPolicy(builder.build());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView logo = (ImageView)findViewById(R.id.imageview);
+        logo.setImageDrawable(getResources().getDrawable(R.drawable.snapify));
         testButton = findViewById(R.id.testButton);
         testButton2 = findViewById(R.id.testButton2);
         ffmpeg = FFmpeg.getInstance(MainActivity.this);
@@ -83,8 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 final Uri videoUri = Uri.fromFile(outputFile);
                 /*String cmd[] = {"ffmpeg ", "-i "+ inputFile.getPath()+" ", "-i " + musicFile.getPath()+" ", "-map ", "0:0 ", "-map ", "1:0 ",
                         "-c:v ", "copy ", "-c:a ", "aac ", "-b:a ", "256k ", "-shortest ", outputFile.getPath()};*/
-                String cmd[] = {"-i ", inputFile.getPath()+" ", "-codec ", "copy ", "-an ", outputFile.getPath()};
+                //String cmd[] = {"-i ", inputFile.getPath()+" ", "-codec ", "copy ", "-an ", outputFile.getPath()};
                 //String cmd[] = {"-i "+inputFile.getPath()+" "+outputFile.getPath()+".avi"};
+                String cmd[] = {"-version"};
                 final SnapCreativeKitApi snapCreativeKitApi = SnapCreative.getApi(MainActivity.this);
                 final SnapMediaFactory snapMediaFactory = SnapCreative.getMediaFactory(MainActivity.this);
                 try {
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         // Handle if FFmpeg is already running
                     }
                 } catch (Exception e){
-                    toast(e.getMessage());
+                    toast("No good.");
                 }
             }
         });
