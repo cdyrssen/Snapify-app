@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 final Uri videoUri = Uri.fromFile(outputFile);
                 /*String cmd[] = {"ffmpeg ", "-i "+ inputFile.getPath()+" ", "-i " + musicFile.getPath()+" ", "-map ", "0:0 ", "-map ", "1:0 ",
                         "-c:v ", "copy ", "-c:a ", "aac ", "-b:a ", "256k ", "-shortest ", outputFile.getPath()};*/
-                /*String cmd[] = {"-i ", inputFile.getPath()+" ", "-codec ", "copy ", "-an ", outputFile.getPath()};*/
-                String cmd[] = {"-i "+inputFile.getPath()+" "+outputFile.getPath()+".avi"};
+                String cmd[] = {"-i ", inputFile.getPath()+" ", "-codec ", "copy ", "-an ", outputFile.getPath()};
+                //String cmd[] = {"-i "+inputFile.getPath()+" "+outputFile.getPath()+".avi"};
                 final SnapCreativeKitApi snapCreativeKitApi = SnapCreative.getApi(MainActivity.this);
                 final SnapMediaFactory snapMediaFactory = SnapCreative.getMediaFactory(MainActivity.this);
                 try {
@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onFinish() {
-                            }
+                            public void onFinish() {}
                         });
                     } catch (FFmpegCommandAlreadyRunningException e) {
                         // Handle if FFmpeg is already running
